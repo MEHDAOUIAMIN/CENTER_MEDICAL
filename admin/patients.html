@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Gestion des Patients</title>
+<link rel="stylesheet" href="style2.css">
+<style>
+@media print {
+    .sidebar, .topbar, .add-btn, .search-bar, .action-col { display: none !important; }
+    .layout { display: block; }
+    .main { margin-left: 0; padding: 0; }
+}
+.search-bar { padding:10px; width:300px; border-radius:5px; border:1px solid #ccc; margin-bottom: 20px;}
+</style>
+</head>
+<body>
+<div class="layout">
+   <aside class="sidebar">
+      <h2>Admin Panel</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="appointments.html">Rendez-vous</a>
+      <a href="doctors.html">Médecins</a>
+      <a class="active" href="patients.html">Patients</a>
+      <a href="#" onclick="logout(); return false;">Déconnexion</a>
+   </aside>
+   <main class="main">
+      <div class="topbar">
+         <h1>Gérer les Patients</h1>
+         <div style="display:flex;gap:10px;">
+            <button class="update" style="margin-top:0;" onclick="window.print()">🖨️ Imprimer la liste</button>
+            <a href="add-patient.html" class="save" style="margin-top:0;text-decoration:none;display:block;">+ Ajouter Patient</a>
+         </div>
+      </div>
+      <input type="text" id="searchPatient" class="search-bar" placeholder="Rechercher par nom..." onkeyup="filterPatients()">
+      <div class="table-box">
+         <table id="patientTable">
+            <thead>
+               <tr>
+                  <th>Nom (Patient)</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th class="action-col">Action</th>
+               </tr>
+            </thead>
+            <tbody id="patientTableBody">
+               <tr><td colspan="4">Chargement...</td></tr>
+            </tbody>
+         </table>
+      </div>
+   </main>
+</div>
+<script src="js/app.js"></script>
+<script>
+function filterPatients() {
+    let input = document.getElementById("searchPatient").value.toUpperCase();
+    let rows = document.getElementById("patientTableBody").getElementsByTagName("tr");
+    for (let i = 0; i < rows.length; i++) {
+        let td = rows[i].getElementsByTagName("td")[0]; // Name column
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(input) > -1) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }       
+    }
+}
+</script>
+</body>
+</html>

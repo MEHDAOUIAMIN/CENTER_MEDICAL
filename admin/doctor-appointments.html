@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Doctor Appointments</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar">
+      <h2 id="docNameSidebar">Dr. ...</h2>
+      <a href="doctor-dashboard.html">Dashboard</a>
+      <a class="active" href="doctor-appointments.html">Appointments</a>
+      <a href="#" onclick="logout(); return false;">Logout</a>
+  </div>
+  <div class="main">
+      <div class="topbar">
+          <h1>Appointments</h1>
+          <p id="todayDate">...</p>
+      </div>
+      <div class="cards">
+          <div class="card"><h3>Total</h3><p id="total_appointments">0</p></div>
+          <div class="card"><h3>Today</h3><p id="today_appointments">0</p></div>
+          <div class="card pending"><h3>Pending</h3><p id="pending_appointments">0</p></div>
+          <div class="card done"><h3>Completed</h3><p id="completed_appointments">0</p></div>
+          <div class="card cancelled"><h3>Cancelled</h3><p id="cancelled_appointments">0</p></div>
+      </div>
+      <div class="table-box">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Patient</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="docApptsBody">
+                  <tr><td colspan='7'>Loading...</td></tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

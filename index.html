@@ -1,24 +1,14 @@
-<?php
-session_start(); // مهم لتتبع الجلسة
-$conn = new mysqli("localhost", "root", "", "medical_center");
-if($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// جلب كل الأطباء من قاعدة البيانات
-$doctors = $conn->query("SELECT * FROM doctors ORDER BY created_at DESC");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMER CENTER</title>
+<meta name="keywords" content="cabinet médical, medecin, patient, rendez-vous, consultation, santé, clinique, Oran, amer center">
+<title>AMER CENTER - Cabinet Médical</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
 <section class="navbar">
     <div class="logo">
         <img src="images/hospital.png" alt="Logo">
@@ -26,12 +16,12 @@ $doctors = $conn->query("SELECT * FROM doctors ORDER BY created_at DESC");
     </div>
 
 <div class="nav-buttons">
-    <a href="booking.php"><button class="button">Book Now</button></a>
-    <a href="admin/doctor-login.php"><button class="button">Login</button></a>
+    <a href="booking.html"><button class="button">Prendre RDV</button></a>
+    <a href="patient/login.html"><button class="button" style="background:#10b981;">Espace Patient</button></a>
+    <a href="admin/login.html"><button class="button" style="background:#0f766e;">Espace Pro</button></a>
 </div>
 </section>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <h1>Welcome to</h1>
@@ -47,7 +37,6 @@ $doctors = $conn->query("SELECT * FROM doctors ORDER BY created_at DESC");
   </div>
 </section>
 
-<!-- INFO BAR -->
 <section class="info-bar">
    <div class="info-item">
       <div class="icon">📍</div>
@@ -74,29 +63,12 @@ $doctors = $conn->query("SELECT * FROM doctors ORDER BY created_at DESC");
    </div>
 </section>
 
-<!-- DOCTORS -->
 <section class="doctors">
   <h2>Our Doctors</h2>
-  <div class="doctor-grid">
-    <?php while($row = $doctors->fetch_assoc()): ?>
-      <div class="card">
-        <img src="images/doctor.png" alt="Doctor <?php echo htmlspecialchars($row['name']); ?>">
-        <h3><?php echo htmlspecialchars($row['name']); ?></h3>
-        <p><?php echo htmlspecialchars($row['speciality']); ?></p>
-        <button onclick="bookDoctor('<?php echo htmlspecialchars($row['name']); ?>')">📅 Book</button>
-      </div>
-    <?php endwhile; ?>
+  <div class="doctor-grid" id="doctor-grid">
   </div>
 </section>
 
-<script>
-function bookDoctor(doctorName){
-    localStorage.setItem('selectedDoctor', doctorName);
-    window.location.href = 'booking.php';
-}
-</script>
-
-<!-- CONTACT -->
 <section class="contact-modern">
   <h1 class="contact-title">Get In Touch</h1>
   <p class="contact-sub">We are always ready to help you</p>
@@ -139,5 +111,6 @@ function bookDoctor(doctorName){
   </div>
 </section>
 
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Appointment</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="booking-section" id="book">
+  <div class="booking-container">
+    <h1>Book Your Appointment</h1>
+
+    <form class="booking-form" id="bookingForm" method="POST">
+      <input type="text" name="fullname" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+
+      <select id="doctorSelect" name="doctor_id" required>
+        <option value="">Loading Doctors...</option>
+      </select>
+
+      <div class="datetime">
+        <input type="date" name="appointment_date" required>
+        <input type="time" name="appointment_time" required>
+      </div>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+</section>
+
+<script src="js/booking.js"></script>
+</body>
+</html>

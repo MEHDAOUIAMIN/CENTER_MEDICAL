@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ajouter Patient</title>
+<link rel="stylesheet" href="style2.css">
+<style>
+.form-box{background-color:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);max-width:500px;}
+.form-box label{display:block;margin-top:15px;margin-bottom:5px;font-weight:bold;}
+.form-box input{width:100%;padding:10px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
+.form-box button{margin-top:20px;padding:12px;width:100%;background-color:#2c3e50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:16px;}
+.form-box button:hover{background-color:#34495e;}
+</style>
+</head>
+<body>
+<div class="layout">
+   <aside class="sidebar">
+      <h2>Admin Panel</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="appointments.html">Rendez-vous</a>
+      <a href="doctors.html">Médecins</a>
+      <a class="active" href="patients.html">Patients</a>
+      <a href="#" onclick="logout(); return false;">Déconnexion</a>
+   </aside>
+   <main class="main">
+      <div class="topbar">
+         <h1>Ajouter Patient</h1>
+      </div>
+      <div class="form-box">
+         <p id="msg_patient" style="display:none;font-weight:bold;"></p>
+         <form id="addPatientForm">
+            <label>Nom du Patient</label>
+            <input type="text" name="name" placeholder="Entrez le nom" required>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="email@exemple.com" required>
+            <label>Téléphone</label>
+            <input type="text" name="phone" placeholder="0550000000" required>
+            <button type="submit">Sauvegarder Patient</button>
+            <p style="margin-top:10px;font-size:12px;color:gray;">Note: Le mot de passe par défaut est 123456</p>
+         </form>
+      </div>
+   </main>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

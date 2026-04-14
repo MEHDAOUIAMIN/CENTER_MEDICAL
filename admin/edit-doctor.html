@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Doctor</title>
+<link rel="stylesheet" href="style2.css">
+<style>
+.form-box{background-color:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);max-width:500px;}
+.form-box label{display:block;margin-top:15px;margin-bottom:5px;font-weight:bold;}
+.form-box input{width:100%;padding:10px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
+.form-box button{margin-top:20px;padding:12px;width:100%;background-color:#27ae60;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:16px;}
+.form-box button:hover{background-color:#219a52;}
+</style>
+</head>
+<body>
+<div class="layout">
+   <aside class="sidebar">
+      <h2>Admin Panel</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="appointments.html">Appointments</a>
+      <a class="active" href="doctors.html">Doctors</a>
+      <a href="add-doctor.html">Add Doctor</a>
+      <a href="#" onclick="logout(); return false;">Logout</a>
+   </aside>
+   <main class="main">
+      <div class="topbar">
+         <h1>Edit Doctor</h1>
+      </div>
+      <div class="form-box">
+         <form id="editDoctorForm">
+            <label>Doctor Name</label>
+            <input type="text" id="name" required>
+            <label>Speciality</label>
+            <input type="text" id="speciality">
+            <label>Phone</label>
+            <input type="text" id="phone">
+            <label>Working Days</label>
+            <input type="text" id="days">
+            <button type="submit" class="save">Save Changes</button>
+         </form>
+      </div>
+   </main>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
