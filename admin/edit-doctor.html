@@ -5,7 +5,7 @@
 <title>Edit Doctor</title>
 <link rel="stylesheet" href="style2.css">
 <style>
-.form-box{background-color:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);max-width:500px;}
+.form-box{background-color:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);max-width:560px;}
 .form-box label{display:block;margin-top:15px;margin-bottom:5px;font-weight:bold;}
 .form-box input{width:100%;padding:10px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
 .form-box button{margin-top:20px;padding:12px;width:100%;background-color:#27ae60;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:16px;}
@@ -16,11 +16,12 @@
 <div class="layout">
    <aside class="sidebar">
       <h2>Admin Panel</h2>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="appointments.html">Appointments</a>
-      <a class="active" href="doctors.html">Doctors</a>
-      <a href="add-doctor.html">Add Doctor</a>
-      <a href="#" onclick="logout(); return false;">Logout</a>
+      <a href="dashboard.html">Tableau de bord</a>
+      <a href="appointments.html">Rendez-vous</a>
+      <a class="active" href="doctors.html">Medecins</a>
+      <a href="patients.html">Patients</a>
+      <a href="change-password.html">Mot de passe</a>
+      <a href="#" onclick="logout(); return false;">Deconnexion</a>
    </aside>
    <main class="main">
       <div class="topbar">
@@ -28,10 +29,26 @@
       </div>
       <div class="form-box">
          <form id="editDoctorForm">
+            <label>Generated ID</label>
+            <input type="text" id="doctor_code" readonly>
             <label>Doctor Name</label>
             <input type="text" id="name" required>
+            <label>Email</label>
+            <input type="email" id="email" required>
             <label>Speciality</label>
-            <input type="text" id="speciality">
+            <select id="speciality_code" required style="width:100%;padding:10px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;">
+               <option value="">Choose a speciality</option>
+               <option value="01">01 - Cardiology</option>
+               <option value="02">02 - Dermatology</option>
+               <option value="03">03 - Pediatrics</option>
+               <option value="04">04 - Neurology</option>
+               <option value="05">05 - Orthopedics</option>
+               <option value="06">06 - Gynecology</option>
+               <option value="07">07 - Ophthalmology</option>
+               <option value="08">08 - ENT</option>
+               <option value="09">09 - Radiology</option>
+               <option value="10">10 - Dentistry</option>
+            </select>
             <label>Phone</label>
             <input type="text" id="phone">
             <label>Working Days</label>

@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define MAX_STATES 10
+#define MAX_SYMBOLS 10
+
+int getIndex(char c, char symbols[], int numSymbols) {
+    for (int i = 0; i < numSymbols; i++) {
+        if (symbols[i] == c) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int STATES, SYMBOLS;
+    int transition[MAX_STATES][MAX_SYMBOLS];
+    char symbols[MAX_SYMBOLS];
+    bool isFinal[MAX_STATES];
+    int startState;
+    char word[100];
+
+    printf("Enter number of states (<=10): ");
+    scanf("%d", &STATES);
+
+    printf("Enter number of symbols (<=10): ");
+    scanf("%d", &SYMBOLS);
+
+    // ⚠️ حماية من overflow
+    if (STATES > MAX_STATES || SYMBOLS > MAX_SYMBOLS) {
+        printf("Error: limit exceeded!\n");
+        return 0;
+    }
+
+    printf("Enter the symbols (example: a b c):\n");
+    for (int i = 0; i < SYMBOLS; i++) {
+        scanf(" %c", &symbols[i]);
+    }
+
+    printf("\n--- Transition Table ---\n");
+    for (int i = 0; i < STATES; i++) {
+        for (int j = 0; j < SYMBOLS; j++) {
+            printf("δ(%d, %c) = ", i, symbols[j]);
+            scanf("%d", &transition[i][j]);
+        }
+    }
+
+    printf("\nEnter start state: ");
+    scanf("%d", &startState);
+
+    for (int i = 0; i < STATES; i++) {
+        isFinal[i] = false;
+    }
+
+    int numFinal;
+    printf("Enter number of final states: ");
+    scanf("%d", &numFinal);
+
+    printf("Enter final states: ");
+    for (int i = 0; i < numFinal; i++) {
+        int f;
+        scanf("%d", &f);
+        isFinal[f] = true;
+    }
+
+    printf("\nEnter word to test: ");
+    scanf("%s", word);
+
+    int currentState = startState;
+    int len = strlen(word);
+
+    printf("\n--- Simulation ---\n");
+    printf("Start state: %d\n", currentState);
+
+    for (int i = 0; i < len; i++) {
+        char ch = word[i];
+        int col = getIndex(ch, symbols, SYMBOLS);
+
+        if (col == -1) {
+            printf("Error: symbol '%c' not in alphabet!\n", ch);
+            printf("REJECTED\n");
+            return 0;
+        }
+
+        int nextState = transition[currentState][col];
+        printf("'%c': %d -> %d\n", ch, currentState, nextState);
+
+        currentState = nextState;
+    }
+
+    printf("\n--- Result ---\n");
+    printf("Final state: %d\n", currentState);
+
+    if (isFinal[currentState]) {
+        printf("ACCEPTED\n");
+    } else {
+        printf("REJECTED\n");
+    }
+
+    return 0;
+}

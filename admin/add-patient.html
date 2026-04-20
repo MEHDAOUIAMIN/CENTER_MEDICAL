@@ -16,11 +16,12 @@
 <div class="layout">
    <aside class="sidebar">
       <h2>Admin Panel</h2>
-      <a href="dashboard.html">Dashboard</a>
+      <a href="dashboard.html">Tableau de bord</a>
       <a href="appointments.html">Rendez-vous</a>
-      <a href="doctors.html">Médecins</a>
+      <a href="doctors.html">Medecins</a>
       <a class="active" href="patients.html">Patients</a>
-      <a href="#" onclick="logout(); return false;">Déconnexion</a>
+      <a href="change-password.html">Mot de passe</a>
+      <a href="#" onclick="logout(); return false;">Deconnexion</a>
    </aside>
    <main class="main">
       <div class="topbar">
@@ -33,10 +34,12 @@
             <input type="text" name="name" placeholder="Entrez le nom" required>
             <label>Email</label>
             <input type="email" name="email" placeholder="email@exemple.com" required>
-            <label>Téléphone</label>
+            <label>Telephone</label>
             <input type="text" name="phone" placeholder="0550000000" required>
+            <label>Mot de passe</label>
+            <input type="password" name="password" placeholder="123456" required>
             <button type="submit">Sauvegarder Patient</button>
-            <p style="margin-top:10px;font-size:12px;color:gray;">Note: Le mot de passe par défaut est 123456</p>
+            <p style="margin-top:10px;font-size:12px;color:gray;">Le code patient sera genere automatiquement au format 2-00-XX.</p>
          </form>
       </div>
    </main>

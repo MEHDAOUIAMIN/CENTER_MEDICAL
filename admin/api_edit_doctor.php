@@ -18,11 +18,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $id = intval($data['id'] ?? 0);
     $name = $data['name'] ?? '';
     $spec = $data['speciality'] ?? '';
+    $specialityCode = normalizeSpecialityCode($data['speciality_code'] ?? '00');
     $phone = $data['phone'] ?? '';
     $days = $data['days'] ?? '';
+    $email = trim($data['email'] ?? '');
 
-    $stmt = $conn->prepare("UPDATE doctors SET name=?, speciality=?, phone=?, working_days=? WHERE id=?");
-    $stmt->bind_param("ssssi", $name, $spec, $phone, $days, $id);
+    $stmt = $conn->prepare("UPDATE doctors SET name=?, speciality=?, speciality_code=?, phone=?, working_days=?, email=? WHERE id=?");
+    $stmt->bind_param("ssssssi", $name, $spec, $specialityCode, $phone, $days, $email, $id);
 
     if($stmt->execute()) sendJsonResponse('success');
     sendJsonResponse('error', 'Database Error');

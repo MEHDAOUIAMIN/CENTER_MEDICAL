@@ -3,32 +3,37 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const grid = document.getElementById('doctor-grid');
-            if(data.status === 'success') {
+            if (!grid) return;
+
+            if (data.status === 'success' && Array.isArray(data.data) && data.data.length > 0) {
                 data.data.forEach(doctor => {
-                    const name = doctor.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                    const spec = doctor.speciality.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                    
+                    const name = (doctor.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    const spec = (doctor.speciality || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
-                        <img src="images/doctor.png" alt="Doctor ${name}">
+                        <img src="images/doctor.png" alt="صورة ${name}">
                         <h3>${name}</h3>
-                        <p>${spec}</p>
-                        <button onclick="bookDoctor('${name}')">📅 Book</button>
+                        <p>${spec || 'تخصص طبي'}</p>
+                        <button onclick="bookDoctor('${name.replace(/'/g, "\\'")}')">احجز مع هذا الطبيب</button>
                     `;
                     grid.appendChild(card);
                 });
             } else {
-                grid.innerHTML = '<p>Error loading doctors.</p>';
+                grid.innerHTML = '<p style="text-align:center;color:#667786;">لا يوجد أطباء مضافون حاليًا.</p>';
             }
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('doctor-grid').innerHTML = '<p>Network error.</p>';
+            const grid = document.getElementById('doctor-grid');
+            if (grid) {
+                grid.innerHTML = '<p style="text-align:center;color:#667786;">تعذر تحميل قائمة الأطباء الآن.</p>';
+            }
         });
 });
 
-function bookDoctor(doctorName){
+function bookDoctor(doctorName) {
     localStorage.setItem('selectedDoctor', doctorName);
     window.location.href = 'booking.html';
 }

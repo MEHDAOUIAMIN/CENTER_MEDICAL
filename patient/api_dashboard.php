@@ -28,6 +28,7 @@ if($result && $result->num_rows > 0) {
 }
 
 sendJsonResponse('success', null, [
+    'patient_code' => $_SESSION['patient_code'] ?? '',
     'patient_name' => $_SESSION['patient_name'],
     'appointments' => $appts
 ]);

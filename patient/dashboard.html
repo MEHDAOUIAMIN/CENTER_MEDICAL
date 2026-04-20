@@ -10,25 +10,27 @@
    <aside class="sidebar">
       <h2 id="patientNameSidebar">Patient</h2>
       <a class="active" href="dashboard.html">Mes Rendez-vous</a>
-      <a href="#" onclick="logoutPatient(); return false;">Déconnexion</a>
+      <a href="change-password.html">Changer mot de passe</a>
+      <a href="#" onclick="logoutPatient(); return false;">Deconnexion</a>
    </aside>
    <main class="main">
       <div class="topbar">
-         <h1>Dossier Médical</h1>
+         <h1>Dossier Medical</h1>
       </div>
       <div class="table-box">
-         <h2>Mes Rendez-vous & Consultations</h2>
+         <h2>Mes Rendez-vous et Consultations</h2>
          <table>
             <thead>
                <tr>
+                  <th>Code</th>
                   <th>Docteur</th>
-                  <th>Date & Heure</th>
+                  <th>Date et Heure</th>
                   <th>Statut</th>
-                  <th>Détails Consultation</th>
+                  <th>Details Consultation</th>
                </tr>
             </thead>
             <tbody id="patientApptsBody">
-               <tr><td colspan="4">Chargement...</td></tr>
+               <tr><td colspan="5">Chargement...</td></tr>
             </tbody>
          </table>
       </div>

@@ -15,10 +15,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $name = $data['name'] ?? '';
             $email = $data['email'] ?? '';
             $phone = $data['phone'] ?? '';
-            $password = password_hash('123456', PASSWORD_DEFAULT); // Default password
-            $stmt = $conn->prepare("INSERT INTO patients (name, email, phone, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $name, $email, $phone, $password);
-            if($stmt->execute()) sendJsonResponse('success');
+            $plainPassword = $data['password'] ?? '123456';
+            $password = password_hash($plainPassword, PASSWORD_DEFAULT);
+            $userCode = generateUserCode($conn, 'patients', '2', '00');
+            $stmt = $conn->prepare("INSERT INTO patients (user_code, speciality_code, name, email, phone, password) VALUES (?, '00', ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $userCode, $name, $email, $phone, $password);
+            if($stmt->execute()) sendJsonResponse('success', null, ['user_code' => $userCode]);
             else sendJsonResponse('error', 'Erreur d\'ajout. Email existant?');
         }
     }

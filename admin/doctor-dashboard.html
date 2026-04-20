@@ -7,12 +7,13 @@
 </head>
 <body>
 <div class="layout">
-  <div class="sidebar">
+  <aside class="sidebar">
       <h2 id="docNameSidebar">Dr. ...</h2>
-      <a class="active" href="doctor-dashboard.html">Dashboard</a>
-      <a href="doctor-appointments.html">Appointments</a>
-      <a href="#" onclick="logout(); return false;">Logout</a>
-  </div>
+      <a class="active" href="doctor-dashboard.html">Tableau de bord</a>
+      <a href="doctor-appointments.html">Rendez-vous</a>
+      <a href="change-password.html">Mot de passe</a>
+      <a href="#" onclick="logout(); return false;">Deconnexion</a>
+  </aside>
   <div class="main">
       <div class="topbar">
           <h1>Doctor Dashboard</h1>
@@ -36,7 +37,7 @@
                   </tr>
               </thead>
               <tbody id="lastAppts">
-                  <tr><td colspan='4'>Loading...</td></tr>
+                  <tr><td colspan="4">Loading...</td></tr>
               </tbody>
           </table>
       </div>

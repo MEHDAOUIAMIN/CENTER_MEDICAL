@@ -1,0 +1,3 @@
+<?php
+
+define('DOCTOR_REGISTRATION_SECRET', 'INFO2026');

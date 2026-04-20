@@ -1,115 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="cabinet médical, medecin, patient, rendez-vous, consultation, santé, clinique, Oran, amer center">
-<title>AMER CENTER - Cabinet Médical</title>
+<meta name="keywords" content="مركز طبي, حجز موعد, أطباء, مرضى, amer center">
+<title>AMER CENTER - المركز الطبي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<section class="navbar">
+<header class="site-header">
+  <div class="navbar">
     <div class="logo">
-        <img src="images/hospital.png" alt="Logo">
-        <h1>AMER <span>Center Medical</span></h1>
-    </div>
-
-<div class="nav-buttons">
-    <a href="booking.html"><button class="button">Prendre RDV</button></a>
-    <a href="patient/login.html"><button class="button" style="background:#10b981;">Espace Patient</button></a>
-    <a href="admin/login.html"><button class="button" style="background:#0f766e;">Espace Pro</button></a>
-</div>
-</section>
-
-<section class="hero">
-  <div class="hero-text">
-    <h1>Welcome to</h1>
-    <span>AMER Medical Center</span>
-    <div class="tbal3it">
-      <h2>✔ Quality Care</h2>
-      <h2>✔ Easy Booking</h2>
-      <h2>✔ Professional Doctors</h2>
-    </div>
-  </div>
-  <div class="hero-img">
-    <img src="images/vecteezy_modern-hospital-building-with-red-cross-symbol-isolated-on_60423723.png" alt="Hospital">
-  </div>
-</section>
-
-<section class="info-bar">
-   <div class="info-item">
-      <div class="icon">📍</div>
-      <div>
-         <h4>Amar Medical Center</h4>
-         <p>Your Health is Our Priority</p>
-      </div>
-   </div>
-   <div class="divider"></div>
-   <div class="info-item">
-      <div class="icon">🕒</div>
-      <div>
-         <h4>Open Daily</h4>
-         <p>8:00 AM – 8:00 PM</p>
-      </div>
-   </div>
-   <div class="divider"></div>
-   <div class="info-item">
-      <div class="icon">📞</div>
-      <div>
-         <h4>Contact Us</h4>
-         <p>+213 XXX XXX XXX</p>
-      </div>
-   </div>
-</section>
-
-<section class="doctors">
-  <h2>Our Doctors</h2>
-  <div class="doctor-grid" id="doctor-grid">
-  </div>
-</section>
-
-<section class="contact-modern">
-  <h1 class="contact-title">Get In Touch</h1>
-  <p class="contact-sub">We are always ready to help you</p>
-  <div class="contact-modern-container">
-    <div class="contact-modern-info">
-      <div class="info-box">
-        <span>📍</span>
-        <div>
-          <h3>Location</h3>
-          <p>Oran Medical Street</p>
-        </div>
-      </div>
-      <div class="info-box">
-        <span>📞</span>
-        <div>
-          <h3>Phone</h3>
-          <p>+213 555 00 00</p>
-        </div>
-      </div>
-      <div class="info-box">
-        <span>📧</span>
-        <div>
-          <h3>Email</h3>
-          <p>amercenter@gmail.com</p>
-        </div>
-      </div>
-      <div class="social-icons">
-        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="images/linkedin.png" alt="LinkedIn"></a>
-        <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+      <img src="images/hospital.png" alt="شعار المركز">
+      <div class="logo-text">
+        <h1>AMER CENTER</h1>
+        <p>مركز طبي جامعي بواجهة بسيطة وواضحة</p>
       </div>
     </div>
-    <form class="contact-modern-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Write your message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+
+    <div class="nav-buttons">
+      <a class="button button-main" href="booking.html">احجز موعد</a>
+      <a class="button button-soft" href="patient/login.html">دخول المريض</a>
+      <a class="button button-line" href="admin/login.html">دخول الإدارة</a>
+    </div>
   </div>
-</section>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="tag">رعاية صحية أقرب إليك</span>
+      <h2>مرحبا بك في <span>AMER CENTER</span></h2>
+      <p>
+        موقع بسيط يساعدك على حجز الموعد، التعرف على الأطباء،
+        والدخول إلى مساحة المريض أو الإدارة بسهولة.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button button-main" href="booking.html">ابدأ الحجز</a>
+        <a class="button button-light" href="#doctors">شاهد الأطباء</a>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+    
+    </div>
+  </section>
+
+  <section class="info-grid">
+    <div class="info-card">
+      <div class="icon-box">📍</div>
+      <h3>الموقع</h3>
+      <p>وهران - الجزائر</p>
+    </div>
+
+    <div class="info-card">
+      <div class="icon-box">🕒</div>
+      <h3>ساعات العمل</h3>
+      <p>كل يوم من 08:00 إلى 20:00</p>
+    </div>
+
+    <div class="info-card">
+      <div class="icon-box">📞</div>
+      <h3>الهاتف</h3>
+      <p>+213 555 00 00</p>
+    </div>
+  </section>
+
+  <section class="doctors" id="doctors">
+    <div class="section-title">
+      <h2>الأطباء</h2>
+      <p>قائمة الأطباء المسجلين في النظام</p>
+    </div>
+    <div class="doctor-grid" id="doctor-grid"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>AMER CENTER</p>
+  <div class="footer-links">
+    <a href="booking.html">الحجز</a>
+    <a href="patient/login.html">المريض</a>
+    <a href="admin/login.html">الإدارة</a>
+  </div>
+</footer>
 
 <script src="js/main.js"></script>
 </body>

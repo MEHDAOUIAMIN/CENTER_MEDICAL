@@ -5,11 +5,13 @@ $conn = Database::getConnection();
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST') sendJsonResponse('error', 'Invalid method');
 
-$email = $_POST['email'] ?? '';
+$loginId = trim($_POST['login_id'] ?? '');
 $password = $_POST['password'] ?? '';
 
-$stmt = $conn->prepare("SELECT * FROM patients WHERE email=?");
-$stmt->bind_param("s", $email);
+if($loginId === '' || $password === '') sendJsonResponse('error', 'ID and password are required');
+
+$stmt = $conn->prepare("SELECT * FROM patients WHERE user_code=?");
+$stmt->bind_param("s", $loginId);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -18,9 +20,10 @@ if($result->num_rows == 1){
     if(password_verify($password, $user['password'])){
         if (session_status() === PHP_SESSION_NONE) session_start();
         $_SESSION['patient_id'] = $user['id'];
+        $_SESSION['patient_code'] = $user['user_code'] ?? '';
         $_SESSION['patient_name'] = $user['name'];
         $_SESSION['patient_email'] = $user['email'];
         sendJsonResponse('success', null, ['redirect'=>'dashboard.html']);
     }
 }
-sendJsonResponse('error', 'Invalid email or password');
+sendJsonResponse('error', 'Invalid ID or password');
