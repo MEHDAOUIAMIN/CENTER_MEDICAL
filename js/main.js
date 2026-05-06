@@ -35,5 +35,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function bookDoctor(doctorName) {
     localStorage.setItem('selectedDoctor', doctorName);
-    window.location.href = 'booking.html';
+    window.location.href = 'booking.php';
 }

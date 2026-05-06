@@ -42,6 +42,6 @@ if (!$stmt->execute()) {
 
 sendJsonResponse('success', 'Doctor account created successfully', [
     'user_code' => $userCode,
-    'redirect' => 'login.html'
+    'redirect' => 'login.php'
 ]);
 ?>

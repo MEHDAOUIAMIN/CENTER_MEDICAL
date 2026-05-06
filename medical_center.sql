@@ -55,6 +55,7 @@ INSERT INTO `admins` (`id`, `user_code`, `speciality_code`, `name`, `email`, `pa
 
 CREATE TABLE `appointments` (
   `id` int(10) UNSIGNED NOT NULL,
+  `patient_id` int(10) UNSIGNED DEFAULT NULL,
   `fullname` varchar(120) NOT NULL,
   `phone` varchar(30) NOT NULL,
   `email` varchar(120) NOT NULL,
@@ -70,10 +71,10 @@ CREATE TABLE `appointments` (
 -- Déchargement des données de la table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `fullname`, `phone`, `email`, `doctor_id`, `appointment_date`, `appointment_time`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'amin mehdaoui', '2525252525', 'aminmehdaoui.2006@gmail.com', 1, '0000-00-00', '11:11:00', 'pending', '2026-04-18 01:36:40', '2026-04-18 01:36:40'),
-(2, 'yazid', '2525252525', 'uzetzsutzs@gmail.com', 1, '0000-00-00', '00:49:00', 'pending', '2026-04-20 09:48:56', '2026-04-20 09:48:56'),
-(3, 'yazid', '2525252525', 'uzetzsutzs@gmail.com', 1, '0000-00-00', '15:21:00', 'pending', '2026-04-21 11:49:00', '2026-04-21 11:49:00');
+INSERT INTO `appointments` (`id`, `patient_id`, `fullname`, `phone`, `email`, `doctor_id`, `appointment_date`, `appointment_time`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Patient Demo', '0555000000', 'patient@example.com', 1, '2026-04-25', '11:11:00', 'pending', '2026-04-18 01:36:40', '2026-04-18 01:36:40'),
+(2, NULL, 'yazid', '2525252525', 'uzetzsutzs@gmail.com', 1, '2026-04-26', '00:49:00', 'pending', '2026-04-20 09:48:56', '2026-04-20 09:48:56'),
+(3, NULL, 'yazid', '2525252525', 'uzetzsutzs@gmail.com', 1, '2026-04-27', '15:21:00', 'pending', '2026-04-21 11:49:00', '2026-04-21 11:49:00');
 
 -- --------------------------------------------------------
 
@@ -169,6 +170,9 @@ CREATE TABLE `patients` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patients` (`id`, `user_code`, `speciality_code`, `name`, `email`, `phone`, `password`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, '20001', '00', 'Patient Demo', 'patient@example.com', '0555000000', '$2y$10$6X4l4v5b0t4bylQfF8nM3OqQQ0iT2t0s7rA3xA.NdFR1m6i4MWE6m', 1, '2026-04-18 00:54:19', '2026-04-18 00:54:19');
+
 --
 -- Index pour les tables déchargées
 --
@@ -187,6 +191,7 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_appointments_patient` (`patient_id`),
   ADD KEY `idx_appointments_doctor` (`doctor_id`),
   ADD KEY `idx_appointments_date` (`appointment_date`),
   ADD KEY `idx_appointments_status` (`status`);
@@ -257,7 +262,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT pour la table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
@@ -273,7 +278,8 @@ ALTER TABLE `admins`
 -- Contraintes pour la table `appointments`
 --
 ALTER TABLE `appointments`
-  ADD CONSTRAINT `fk_appointments_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_appointments_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_appointments_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `consultations`

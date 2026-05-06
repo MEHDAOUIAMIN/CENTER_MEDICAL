@@ -207,6 +207,11 @@ img {
     margin-bottom: 36px;
 }
 
+.about-center,
+.simple-note {
+    margin-bottom: 36px;
+}
+
 .info-card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -244,6 +249,35 @@ img {
     border: 1px solid var(--line);
     border-radius: 28px;
     padding: 28px 22px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.about-card,
+.simple-note-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 22px 18px;
+    box-shadow: 0 8px 18px rgba(36, 49, 59, 0.05);
+}
+
+.about-card h3,
+.simple-note-card h3 {
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 1.05rem;
+}
+
+.about-card p,
+.simple-note-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
 }
 
 .section-title {
@@ -403,6 +437,7 @@ img {
 @media (max-width: 980px) {
     .hero,
     .info-grid,
+    .about-grid,
     .doctor-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -421,6 +456,7 @@ img {
 @media (max-width: 640px) {
     .hero,
     .info-grid,
+    .about-grid,
     .doctor-grid {
         grid-template-columns: 1fr;
     }

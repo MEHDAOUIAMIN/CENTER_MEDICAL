@@ -33,7 +33,7 @@ if (!$stmt->execute()) {
 }
 
 sendJsonResponse('success', 'Account created successfully', [
-    'redirect' => 'login.html',
+    'redirect' => 'login.php',
     'user_code' => $userCode
 ]);
 ?>

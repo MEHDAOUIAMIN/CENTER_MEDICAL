@@ -1,31 +1,41 @@
 <?php
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../utils/helpers.php';
+
 checkAdminAuth();
-$conn = Database::getConnection();
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $data = getJsonInput();
-    if(isset($data['action']) && isset($data['id'])){
-        $id = intval($data['id']);
-        if($data['action'] === 'accept'){
-            $conn->query("UPDATE appointments SET status='done' WHERE id=$id");
-        }elseif($data['action'] === 'cancel'){
-            $conn->query("UPDATE appointments SET status='cancelled' WHERE id=$id");
-        }
-        sendJsonResponse('success');
+$connection = Database::getConnection();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $payload = getJsonInput();
+    $appointmentId = (int) ($payload['id'] ?? 0);
+    $action = $payload['action'] ?? '';
+
+    if ($appointmentId <= 0 || !in_array($action, ['accept', 'cancel'], true)) {
+        sendJsonResponse('error', 'Invalid parameters');
     }
-    sendJsonResponse('error', 'Invalid parameters');
+
+    $status = $action === 'accept' ? 'done' : 'cancelled';
+    $statement = $connection->prepare('UPDATE appointments SET status = ? WHERE id = ?');
+    $statement->bind_param('si', $status, $appointmentId);
+    $statement->execute();
+
+    sendJsonResponse('success');
 }
 
-$result = $conn->query("
-    SELECT a.id, a.fullname, a.phone, d.name AS doctor_name, 
-           a.appointment_date, a.appointment_time, a.status
-    FROM appointments a JOIN doctors d ON a.doctor_id = d.id
-    ORDER BY a.appointment_date DESC, a.appointment_time DESC
-");
-$appts = [];
-if($result && $result->num_rows > 0) {
-    while($r = $result->fetch_assoc()) $appts[] = $r;
+$result = $connection->query(
+    'SELECT a.id, a.fullname, a.phone, d.name AS doctor_name, a.appointment_date, a.appointment_time, a.status
+     FROM appointments a
+     INNER JOIN doctors d ON d.id = a.doctor_id
+     ORDER BY a.appointment_date DESC, a.appointment_time DESC'
+);
+
+$appointments = [];
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $appointments[] = $row;
+    }
 }
-sendJsonResponse('success', null, $appts);
+
+sendJsonResponse('success', null, $appointments);

@@ -1,15 +1,31 @@
 <?php
 
-class Database {
-    private static $conn = null;
+class Database
+{
+    private static ?mysqli $connection = null;
 
-    public static function getConnection() {
-        if (self::$conn === null) {
-            self::$conn = new mysqli("localhost", "root", "", "medical_center");
-            if (self::$conn->connect_error) {
-                die(json_encode(['status' => 'error', 'message' => 'Database connection failed']));
-            }
+    public static function getConnection(): mysqli
+    {
+        if (self::$connection instanceof mysqli) {
+            return self::$connection;
         }
-        return self::$conn;
+
+        mysqli_report(MYSQLI_REPORT_OFF);
+
+        self::$connection = new mysqli('localhost', 'root', '', 'medical_center');
+
+        if (self::$connection->connect_error) {
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Database connection failed'
+            ]);
+            exit;
+        }
+
+        self::$connection->set_charset('utf8mb4');
+
+        return self::$connection;
     }
 }

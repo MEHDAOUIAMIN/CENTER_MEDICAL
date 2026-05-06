@@ -1,5 +1,5 @@
 function logout() {
-    fetch('api_logout.php').then(() => window.location.href = 'login.html');
+    fetch('api_logout.php').then(() => window.location.href = 'login.php');
 }
 
 function getSpecialityNameFromSelect(selectElement) {
@@ -10,27 +10,6 @@ function getSpecialityNameFromSelect(selectElement) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const errorMsg = document.getElementById('errorMsg');
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('api_login.php', { method: 'POST', body: formData })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        window.location.href = data.redirect;
-                    } else if (errorMsg) {
-                        errorMsg.innerText = data.message;
-                    }
-                })
-                .catch(() => {
-                    if (errorMsg) errorMsg.innerText = 'Network Error';
-                });
-        });
-    }
-
     const doctorRegisterForm = document.getElementById('doctorRegisterForm');
     if (doctorRegisterForm) {
         doctorRegisterForm.addEventListener('submit', function (e) {
@@ -66,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.getElementById('welcomeText') && document.title.includes('Admin')) {
         fetch('api_admin_dashboard.php').then(res => res.json()).then(data => {
-            if (data.status === 'error') { window.location.href = 'login.html'; return; }
+            if (data.status === 'error') { window.location.href = 'login.php'; return; }
             const d = data.data;
             document.getElementById('welcomeText').innerText = 'Dashboard (' + d.admin_name + ')';
             document.getElementById('total_doctors').innerText = d.total_doctors;
@@ -99,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (apptsBody) {
         window.loadAppointments = function () {
             fetch('api_appointments.php').then(res => res.json()).then(data => {
-                if (data.status === 'error') { window.location.href = 'login.html'; return; }
+                if (data.status === 'error') { window.location.href = 'login.php'; return; }
                 apptsBody.innerHTML = '';
                 if (data.data.length === 0) {
                     apptsBody.innerHTML = "<tr><td colspan='7'>No appointments found.</td></tr>";
@@ -137,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (doctorGrid) {
         window.loadDoctors = function () {
             fetch('api_admin_doctors.php').then(res => res.json()).then(data => {
-                if (data.status === 'error') { window.location.href = 'login.html'; return; }
+                if (data.status === 'error') { window.location.href = 'login.php'; return; }
                 doctorGrid.innerHTML = '';
                 if (data.data.length === 0) {
                     doctorGrid.innerHTML = '<p>No doctors found.</p>';
@@ -258,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const docNameSidebar = document.getElementById('docNameSidebar');
     if (docNameSidebar && document.title.includes('Doctor Dashboard')) {
         fetch('api_doctor_dashboard.php').then(res => res.json()).then(data => {
-            if (data.status === 'error') { window.location.href = 'login.html'; return; }
+            if (data.status === 'error') { window.location.href = 'login.php'; return; }
             const d = data.data;
             docNameSidebar.innerText = 'Dr. ' + d.doctor_name;
             document.getElementById('todayDate').innerText = new Date().toDateString();
@@ -283,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (docApptsBody) {
         window.loadDocAppointments = function () {
             fetch('api_doctor_appointments.php').then(res => res.json()).then(data => {
-                if (data.status === 'error') { window.location.href = 'login.html'; return; }
+                if (data.status === 'error') { window.location.href = 'login.php'; return; }
                 const d = data.data;
                 document.getElementById('docNameSidebar').innerText = 'Dr. ' + d.doctor_name;
                 document.getElementById('todayDate').innerText = d.today_date;
@@ -331,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (patientTableBody) {
         window.loadPatients = function () {
             fetch('api_admin_patients.php').then(res => res.json()).then(data => {
-                if (data.status === 'error') { window.location.href = 'login.html'; return; }
+                if (data.status === 'error') { window.location.href = 'login.php'; return; }
                 patientTableBody.innerHTML = '';
                 if (data.data.length === 0) {
                     patientTableBody.innerHTML = "<tr><td colspan='5'>Aucun patient trouve.</td></tr>";

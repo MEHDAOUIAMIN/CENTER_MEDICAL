@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if(data.status === 'success') {
                 alert('Appointment booked successfully!');
-                window.location.href = 'index.html';
+                window.location.href = 'patient/mes_rendez_vous.php';
             } else {
                 alert('Error: ' + data.message);
             }

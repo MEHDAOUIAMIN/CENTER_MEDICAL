@@ -1,21 +1,8 @@
 function logoutPatient() {
-    fetch('api_logout.php').then(() => window.location.href = 'login.html');
+    fetch('api_logout.php').then(() => window.location.href = 'login.php');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('patientLoginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('api_login.php', { method: 'POST', body: formData })
-                .then(r => r.json()).then(data => {
-                    if (data.status === 'success') window.location.href = data.redirect;
-                    else document.getElementById('errorMsg').innerText = data.message;
-                }).catch(() => document.getElementById('errorMsg').innerText = 'Network Error');
-        });
-    }
-
     const registerForm = document.getElementById('patientRegisterForm');
     if (registerForm) {
         registerForm.addEventListener('submit', function (e) {
@@ -75,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('patientApptsBody');
     if (tbody) {
         fetch('api_dashboard.php').then(r => r.json()).then(data => {
-            if (data.status === 'error') { window.location.href = 'login.html'; return; }
+            if (data.status === 'error') { window.location.href = 'login.php'; return; }
             const patientTitle = document.getElementById('patientNameSidebar');
             const patientCode = data.data.patient_code ? ' (' + data.data.patient_code + ')' : '';
             patientTitle.innerText = data.data.patient_name + patientCode;
