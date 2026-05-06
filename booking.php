@@ -35,7 +35,10 @@ if (!$patient) {
   <div class="booking-container">
     <div style="margin-bottom:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <a href="index.html" style="color:#0f766e;text-decoration:none;font-weight:600;">&larr; Retour a l'accueil</a>
-      <a href="patient/mes_rendez_vous.php" style="color:#0f766e;text-decoration:none;font-weight:600;">Mes rendez-vous</a>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="patient/mes_rendez_vous.php" style="color:#0f766e;text-decoration:none;font-weight:600;">Mes rendez-vous</a>
+        <a href="patient/api_logout.php" style="color:#b91c1c;text-decoration:none;font-weight:600;">Changer de compte</a>
+      </div>
     </div>
 
     <h1>Reserver un rendez-vous</h1>
